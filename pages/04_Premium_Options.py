@@ -9,6 +9,111 @@ st.set_page_config(
     layout="wide"
 )
 
+# Custom CSS to enhance styling
+st.markdown("""
+<style>
+    /* Button styling */
+    div.stButton > button:first-child {
+        background-color: #4361EE;
+        color: white;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    div.stButton > button:hover {
+        background-color: #3A56D4;
+    }
+    
+    /* Header styling */
+    h1, h2, h3, h4 {
+        font-family: 'sans-serif';
+        font-weight: 600;
+        color: #212529;
+    }
+    h1 {
+        border-bottom: 2px solid #4361EE;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    
+    /* Package card styling */
+    .package-card {
+        border-radius: 10px;
+        padding: 25px;
+        height: 100%;
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+    }
+    .package-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .package-card.basic {
+        background-color: #F8F9FA;
+        border: 1px solid #e0e0e0;
+    }
+    .package-card.standard {
+        background-color: #F0F7FF;
+        border: 1px solid #B6D0E2;
+    }
+    .package-card.premium {
+        background-color: #F0F3FF;
+        border: 1px solid #4361EE;
+    }
+    .price-tag {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 15px 0;
+        color: #4361EE;
+    }
+    .feature-list {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+    .feature-list li {
+        margin-bottom: 8px;
+    }
+    .popular-badge {
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        background-color: #FF5722;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    /* Testimonial card styling */
+    .testimonial-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+    }
+    .testimonial-quote {
+        font-style: italic;
+        color: #495057;
+        font-size: 16px;
+    }
+    .testimonial-author {
+        color: #212529;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Title and description
 st.title("Premium Listing Options")
 st.write("Boost your visibility with premium placement")
