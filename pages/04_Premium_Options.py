@@ -130,45 +130,70 @@ if 'new_listing_id' in st.session_state:
 # Premium package information
 st.header("Choose Your Premium Package")
 
-# Display premium options in cards
+# Display premium options in modern styled cards
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("## Basic Package")
-    st.markdown("### $29")
-    st.markdown("**Duration: 30 days**")
-    st.markdown("#### Features:")
-    st.markdown("- ✅ Higher placement in listings")
-    st.markdown("- ✅ Enhanced visibility")
-    st.markdown("- ✅ Basic analytics on views")
+    # Basic package with custom styling
+    st.markdown("""
+    <div class="package-card basic">
+        <h2>Basic Package</h2>
+        <div class="price-tag">$29</div>
+        <p><strong>Duration: 30 days</strong></p>
+        <hr>
+        <h4>Features:</h4>
+        <ul class="feature-list">
+            <li>Higher placement in listings</li>
+            <li>Enhanced visibility</li>
+            <li>Basic analytics on views</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
     
-    basic_selected = st.button("Select Basic Package", key="select_basic")
+    basic_selected = st.button("Select Basic Package", key="select_basic", use_container_width=True)
 
 with col2:
-    st.markdown("## Standard Package")
-    st.markdown("### $49")
-    st.markdown("**Duration: 60 days**")
-    st.markdown("#### Features:")
-    st.markdown("- ✅ Featured on category pages")
-    st.markdown("- ✅ 60 days premium visibility")
-    st.markdown("- ✅ Enhanced listing details")
-    st.markdown("- ✅ Detailed analytics dashboard")
+    # Standard package with custom styling and popular badge
+    st.markdown("""
+    <div class="package-card standard">
+        <div class="popular-badge">POPULAR</div>
+        <h2>Standard Package</h2>
+        <div class="price-tag">$49</div>
+        <p><strong>Duration: 60 days</strong></p>
+        <hr>
+        <h4>Features:</h4>
+        <ul class="feature-list">
+            <li>Featured on category pages</li>
+            <li>60 days premium visibility</li>
+            <li>Enhanced listing details</li>
+            <li>Detailed analytics dashboard</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
     
-    standard_selected = st.button("Select Standard Package", key="select_standard")
+    standard_selected = st.button("Select Standard Package", key="select_standard", use_container_width=True)
 
 with col3:
-    st.markdown("## Premium Package")
-    st.markdown("### $99")
-    st.markdown("**Duration: 90 days**")
-    st.markdown("#### Features:")
-    st.markdown("- ✅ Featured on homepage")
-    st.markdown("- ✅ 90 days premium visibility")
-    st.markdown("- ✅ Enhanced listing details")
-    st.markdown("- ✅ Featured in search results")
-    st.markdown("- ✅ Comprehensive analytics")
-    st.markdown("- ✅ Social media promotion")
+    # Premium package with custom styling
+    st.markdown("""
+    <div class="package-card premium">
+        <h2>Premium Package</h2>
+        <div class="price-tag">$99</div>
+        <p><strong>Duration: 90 days</strong></p>
+        <hr>
+        <h4>Features:</h4>
+        <ul class="feature-list">
+            <li>Featured on homepage</li>
+            <li>90 days premium visibility</li>
+            <li>Enhanced listing details</li>
+            <li>Featured in search results</li>
+            <li>Comprehensive analytics</li>
+            <li>Social media promotion</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
     
-    premium_selected = st.button("Select Premium Package", key="select_premium")
+    premium_selected = st.button("Select Premium Package", key="select_premium", use_container_width=True)
 
 # Handle package selection
 if basic_selected or standard_selected or premium_selected:
@@ -203,23 +228,30 @@ if basic_selected or standard_selected or premium_selected:
         if st.button("Submit a Listing"):
             st.switch_page("pages/03_Submit_Listing.py")
 
-# Checkout process
+# Checkout process with enhanced styling
 if 'checkout' in st.session_state:
     checkout = st.session_state['checkout']
     
     st.markdown("---")
-    st.header("Checkout")
+    st.markdown("<h2 style='text-align: center; margin-bottom: 30px;'>Complete Your Purchase</h2>", unsafe_allow_html=True)
     
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.subheader("Payment Information")
+        # Payment form with enhanced styling
+        st.markdown("""
+        <div style="background-color: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+            <h3 style="color: #4361EE; margin-bottom: 20px;">Payment Information</h3>
+        </div>
+        """, unsafe_allow_html=True)
         
         # In a real application, this would integrate with a payment processor
-        # Here we're just collecting the information
-        
         with st.form(key="payment_form"):
-            st.write(f"Package: {checkout['package_type']} - ${checkout['price']}")
+            st.markdown(f"""
+            <div style="background-color: #F8F9FA; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                <strong>Selected Package:</strong> {checkout['package_type']} - ${checkout['price']}
+            </div>
+            """, unsafe_allow_html=True)
             
             # Payment details
             st.text_input("Cardholder Name", placeholder="John Doe")
@@ -233,16 +265,37 @@ if 'checkout' in st.session_state:
             
             st.text_input("Billing Address", placeholder="123 Main St, City, State, ZIP")
             
+            # Styled checkbox for terms
             agreement = st.checkbox("I agree to the terms of service and recurring billing policy")
             
-            submit_payment = st.form_submit_button(f"Pay ${checkout['price']}")
+            # Styled submit button (Streamlit will automatically style this with our custom CSS)
+            submit_payment = st.form_submit_button(f"Complete Purchase - ${checkout['price']}")
     
     with col2:
-        st.subheader("Order Summary")
-        st.write(f"**Package:** {checkout['package_type']}")
-        st.write(f"**Duration:** {checkout['duration']} days")
-        st.write(f"**Price:** ${checkout['price']}")
-        st.write("**Renewal:** Automatic (cancel anytime)")
+        # Order summary with styled card
+        st.markdown("""
+        <div style="background-color: #F0F3FF; border: 1px solid #4361EE; border-radius: 10px; padding: 20px;">
+            <h3 style="color: #212529; margin-bottom: 20px;">Order Summary</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Package details with better styling
+        st.markdown(f"""
+        <div style="background-color: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-top: 20px;">
+            <p><strong>Package:</strong> {checkout['package_type']}</p>
+            <p><strong>Duration:</strong> {checkout['duration']} days</p>
+            <p><strong>Price:</strong> ${checkout['price']}</p>
+            <p><strong>Renewal:</strong> Automatic (cancel anytime)</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Security note
+        st.markdown("""
+        <div style="margin-top: 20px; text-align: center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1253/1253776.png" width="30" style="margin-bottom: 10px;">
+            <p style="font-size: 14px; color: #6c757d;">Secure payment processing.<br>Your data is encrypted and secure.</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     # Process payment submission
     if submit_payment:
@@ -267,71 +320,92 @@ if 'checkout' in st.session_state:
             if st.button("Return to Home"):
                 st.switch_page("app.py")
 
-# Benefits section
+# Benefits section with modern styling
 st.markdown("---")
-st.header("Benefits of Premium Listings")
+st.markdown("<h2 style='text-align: center; margin-bottom: 30px;'>Benefits of Premium Listings</h2>", unsafe_allow_html=True)
 
+# Use icons and cards for benefits
+benefits_data = [
+    {
+        "icon": "👁️", 
+        "title": "Increased Visibility",
+        "description": "Premium listings receive up to 5x more views than standard listings. Your business will be prominently displayed at the top of category pages and search results."
+    },
+    {
+        "icon": "🏆", 
+        "title": "Competitive Advantage",
+        "description": "Stand out from competitors by showcasing your business with enhanced details and premium placement. Be the first business potential customers see."
+    },
+    {
+        "icon": "✅", 
+        "title": "Enhanced Credibility",
+        "description": "Premium listings signal to customers that your business is established and professional. The premium badge adds credibility and trustworthiness."
+    },
+    {
+        "icon": "📊", 
+        "title": "Detailed Analytics",
+        "description": "Gain insights into how customers interact with your listing. Track views, clicks, and user engagement to understand your ROI."
+    }
+]
+
+# Create a 2x2 grid of benefits
 col1, col2 = st.columns(2)
+cols = [col1, col2]
 
-with col1:
-    st.subheader("Increased Visibility")
-    st.write("""
-    Premium listings receive up to 5x more views than standard listings. 
-    Your business will be prominently displayed at the top of category pages 
-    and search results, ensuring maximum exposure to potential customers.
-    """)
-    
-    st.subheader("Competitive Advantage")
-    st.write("""
-    Stand out from competitors by showcasing your business with enhanced 
-    details and premium placement. Be the first business potential customers 
-    see when browsing our directory.
-    """)
+for i, benefit in enumerate(benefits_data):
+    with cols[i % 2]:
+        st.markdown(f"""
+        <div style="background-color: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+            <div style="font-size: 36px; margin-bottom: 10px; text-align: center;">{benefit['icon']}</div>
+            <h3 style="color: #4361EE; margin-bottom: 10px; text-align: center;">{benefit['title']}</h3>
+            <p>{benefit['description']}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-with col2:
-    st.subheader("Enhanced Credibility")
-    st.write("""
-    Premium listings signal to customers that your business is established 
-    and professional. The premium badge adds credibility and trustworthiness 
-    to your listing.
-    """)
-    
-    st.subheader("Detailed Analytics")
-    st.write("""
-    Gain insights into how customers interact with your listing. 
-    Premium packages include detailed analytics on views, clicks, 
-    and user engagement, helping you understand your ROI.
-    """)
-
-# Testimonials
+# Testimonials with modern styling
 st.markdown("---")
-st.header("Success Stories")
+st.markdown("<h2 style='text-align: center; margin-bottom: 30px;'>Success Stories</h2>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("""
-    > "After upgrading to a premium listing, our website traffic increased by 45% in the first month. 
-    > The visibility was worth every penny."
-    
-    **- Sarah J., Owner of Bright Ideas Consulting**
-    """)
+    <div class="testimonial-card">
+        <div class="testimonial-quote">
+            "After upgrading to a premium listing, our website traffic increased by 45% in the first month. 
+            The visibility was worth every penny."
+        </div>
+        <div class="testimonial-author">
+            - Sarah J., Owner of Bright Ideas Consulting
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
-    > "We've gained several new clients directly from our premium directory listing. 
-    > The ROI has been incredible for our small business."
-    
-    **- Michael T., CEO of Tech Solutions Inc.**
-    """)
+    <div class="testimonial-card">
+        <div class="testimonial-quote">
+            "We've gained several new clients directly from our premium directory listing. 
+            The ROI has been incredible for our small business."
+        </div>
+        <div class="testimonial-author">
+            - Michael T., CEO of Tech Solutions Inc.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col3:
     st.markdown("""
-    > "The premium placement gave our new restaurant the initial visibility we needed. 
-    > We're now booked solid every weekend!"
-    
-    **- Emma L., Manager at Fresh Bites Eatery**
-    """)
+    <div class="testimonial-card">
+        <div class="testimonial-quote">
+            "The premium placement gave our new restaurant the initial visibility we needed. 
+            We're now booked solid every weekend!"
+        </div>
+        <div class="testimonial-author">
+            - Emma L., Manager at Fresh Bites Eatery
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # FAQ at the bottom
 with st.expander("Frequently Asked Questions"):

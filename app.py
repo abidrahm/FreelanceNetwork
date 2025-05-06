@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from datetime import datetime
 from data_manager import initialize_data, get_premium_listings, get_listings_by_category, get_categories
-from utils import track_page_view
+from utils import track_page_view, apply_page_styling
 
 # Setup page config
 st.set_page_config(
@@ -13,40 +13,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS to enhance styling
+# Apply consistent styling across the app
+apply_page_styling()
+
+# Add page-specific styles
 st.markdown("""
 <style>
-    /* Card styling for listings */
-    div.stButton > button:first-child {
-        background-color: #4361EE;
-        color: white;
-        border-radius: 4px;
-        padding: 0.5rem 1rem;
-        border: none;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
-    div.stButton > button:hover {
-        background-color: #3A56D4;
-    }
-    
-    /* Header styling */
-    h1, h2, h3, h4 {
-        font-family: 'sans-serif';
-        font-weight: 600;
-        color: #212529;
-    }
-    h1 {
-        border-bottom: 2px solid #4361EE;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
-    
     /* Premium listing style */
     .premium-card {
         border: 1px solid #e0e0e0;

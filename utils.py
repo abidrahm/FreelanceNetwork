@@ -5,6 +5,75 @@ from datetime import datetime
 import hashlib
 import re
 
+def apply_page_styling():
+    """Apply consistent styling to Streamlit pages."""
+    st.markdown("""
+    <style>
+        /* Button styling */
+        div.stButton > button:first-child {
+            background-color: #4361EE;
+            color: white;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        div.stButton > button:hover {
+            background-color: #3A56D4;
+        }
+        
+        /* Header styling */
+        h1, h2, h3, h4 {
+            font-family: 'sans-serif';
+            font-weight: 600;
+            color: #212529;
+        }
+        h1 {
+            border-bottom: 2px solid #4361EE;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Card styling */
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Form styling */
+        div.stTextInput > div > div > input {
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+        }
+        div.stTextInput > div > div > input:focus {
+            border-color: #4361EE;
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+        }
+        
+        /* Info box styling */
+        div.stAlert > div {
+            border-radius: 10px;
+            padding: 15px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
 def is_valid_url(url):
     """Check if URL is valid."""
     url_pattern = re.compile(
