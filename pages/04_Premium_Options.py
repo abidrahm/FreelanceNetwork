@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from data_manager import add_premium_listing, get_listing_by_id
+from utils import apply_page_styling
 
 # Page configuration
 st.set_page_config(
@@ -9,40 +10,12 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS to enhance styling
+# Apply consistent styling across the app
+apply_page_styling()
+
+# Add page-specific styles
 st.markdown("""
 <style>
-    /* Button styling */
-    div.stButton > button:first-child {
-        background-color: #4361EE;
-        color: white;
-        border-radius: 4px;
-        padding: 0.5rem 1rem;
-        border: none;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
-    div.stButton > button:hover {
-        background-color: #3A56D4;
-    }
-    
-    /* Header styling */
-    h1, h2, h3, h4 {
-        font-family: 'sans-serif';
-        font-weight: 600;
-        color: #212529;
-    }
-    h1 {
-        border-bottom: 2px solid #4361EE;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
-    
     /* Package card styling */
     .package-card {
         border-radius: 10px;
